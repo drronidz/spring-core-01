@@ -1,4 +1,4 @@
-package com.academicdeveloper.helloworld;
+package com.academicdeveloper.helloworld.di;
 
 /*
 PROJECT NAME : 2. Getting Started with Spring
@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 
 /* @Annotation Getting Registered as spring bean */
 @Component
-public class HelloWorldImpl implements HelloWorldService{
+public class HelloWorldImpl implements HelloWorldService {
 
     public void sayHello() {
-        System.out.println("Hello World !!!");
+        System.out.println("Hello World !!");
     }
 }

@@ -1,4 +1,4 @@
-package com.academicdeveloper.helloworld;
+package com.academicdeveloper.helloworld.di;
 
 /*
 PROJECT NAME : 3. Dependency Injection using Spring
