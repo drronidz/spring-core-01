@@ -7,11 +7,7 @@ Author Name : @ DRRONIDZ
 DATE : 2/25/2022 11:22 PM
 */
 
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Component;
 
-@Component
-@Profile({"default","english"})
 public class GreetingServiceEnglishImpl implements GreetingService {
 
     @Override
