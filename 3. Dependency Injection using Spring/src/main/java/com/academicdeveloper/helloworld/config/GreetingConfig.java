@@ -14,6 +14,7 @@ import com.academicdeveloper.helloworld.services.GreetingServiceSpanishImpl;
 import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
 @Configuration
@@ -26,6 +27,7 @@ public class GreetingConfig {
 
     @Bean
     @Profile("english")
+    @Primary
     public GreetingService greetingServiceEnglish(GreetingFactory factory) {
         return factory.createGreetingService("en");
     }
@@ -42,8 +44,8 @@ public class GreetingConfig {
         return factory.createGreetingService("fr");
     }
 
-    @Bean
-    @Profile("arabic")
+    @Bean(name = "arabic")
+//    @Profile("arabic")
     public GreetingService greetingServiceArabic(GreetingFactory factory) {
         return factory.createGreetingService("ar");
     }
@@ -52,5 +54,10 @@ public class GreetingConfig {
     @Profile("amazigh")
     public GreetingService greetingServiceAmazigh(GreetingFactory factory) {
         return factory.createGreetingService("az");
+    }
+
+    @Bean
+    public GreetingService greetingServiceGerman(GreetingFactory factory) {
+        return factory.createGreetingService("de");
     }
 }

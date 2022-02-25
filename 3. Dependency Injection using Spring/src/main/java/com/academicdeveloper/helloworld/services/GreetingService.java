@@ -7,6 +7,7 @@ Author Name : @ DRRONIDZ
 DATE : 2/25/2022 11:31 PM
 */
 
+
 public interface GreetingService {
     public String getGreeting();
 }

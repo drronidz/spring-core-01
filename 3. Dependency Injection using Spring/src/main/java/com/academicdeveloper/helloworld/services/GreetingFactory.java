@@ -27,6 +27,9 @@ public class GreetingFactory {
                 break;
             case "az":
                 greetingService = new GreetingServiceAmazighImpl();
+                break;
+            case "de":
+                greetingService = new GreetingServiceGermanImpl();
             default:
                 new GreetingServiceEnglishImpl();
         }
