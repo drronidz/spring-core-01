@@ -1,15 +1,16 @@
-package com.academicdeveloper.helloworld;
+package com.academicdeveloper.helloworld.springboot;
 
 import com.academicdeveloper.helloworld.controllers.GreetingController;
-import com.academicdeveloper.helloworld.di.InjectedByConstructorService;
-import com.academicdeveloper.helloworld.di.SetterBasedService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+
 /*
 * Spring 4 & Spring Boot
 * */
 @SpringBootApplication
+@ComponentScan("com.academicdeveloper.helloworld")
 public class HelloWorldApplication {
 
     public static void main(String[] args) {
