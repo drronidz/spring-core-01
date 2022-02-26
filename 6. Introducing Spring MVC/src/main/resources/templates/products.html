@@ -28,12 +28,14 @@
                 <th>Description</th>
                 <th>Price</th>
                 <th>Image URL</th>
+                <th>View</th>
             </tr>
             <tr th:each="product : ${products}">
                 <td th:text="${product.id}">0</td>
                 <td th:text="${product.description}">product 0 desc</td>
                 <td th:text="${product.price}">00.00</td>
                 <td th:text="${product.imageURL}">http://www.example.image0.com</td>
+                <td><a class="btn btn-primary" th:href="${'/product/' + product.id}">View</a></td>
             </tr>
         </table>
     </div>
