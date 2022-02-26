@@ -50,6 +50,12 @@ public class ProductController {
         return "productForm";
     }
 
+    @RequestMapping("/product/delete/{id}")
+    public String deleteProduct(@PathVariable Integer id) {
+        productService.deleteProduct(id);
+        return "redirect:/products";
+    }
+
     @RequestMapping(value = "/product", method = RequestMethod.POST)
     public String saveOrUpdateProduct(Product product) {
         Product savedProduct = productService.saveOrUpdateProduct(product);

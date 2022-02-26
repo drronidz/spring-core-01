@@ -45,6 +45,16 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
+    @Override
+    public boolean deleteProduct(Integer id) {
+        if (id == null) {
+            throw new RuntimeException("Product id cannot be null!");
+        } else {
+            products.remove(id);
+            return true;
+        }
+    }
+
     private Integer getNextKey() {
         return Collections.max(products.keySet()) + 1;
     }
