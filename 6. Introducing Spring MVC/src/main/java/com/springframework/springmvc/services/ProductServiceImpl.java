@@ -11,10 +11,7 @@ import com.springframework.springmvc.domain.Product;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -33,6 +30,23 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getProductById(Integer id) {
         return products.get(id);
+    }
+
+    @Override
+    public Product saveOrUpdateProduct(Product product) {
+        if (product != null) {
+            if (product.getId() == null) {
+                product.setId(getNextKey());
+            }
+            products.put(product.getId(), product);
+            return product;
+        } else {
+            throw new RuntimeException("Product Can't be null");
+        }
+    }
+
+    private Integer getNextKey() {
+        return Collections.max(products.keySet()) + 1;
     }
 
     private void loadProducts() {
@@ -63,7 +77,5 @@ public class ProductServiceImpl implements ProductService {
         productFour.setPrice(new BigDecimal("19.99"));
         productFour.setImageURL("http://example.com/product4");
         products.put(4, productFour);
-
-
     }
 }
