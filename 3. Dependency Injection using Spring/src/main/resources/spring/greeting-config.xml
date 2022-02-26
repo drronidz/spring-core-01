@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="greetingFactory" class="com.academicdeveloper.helloworld.services.GreetingFactory"/>
+    <bean id="arabic" factory-bean="greetingFactory" factory-method="createGreetingService">
+        <constructor-arg value="ar"/>
+    </bean>
+    <bean id="spanish" factory-bean="greetingFactory" factory-method="createGreetingService">
+        <constructor-arg value="es"/>
+    </bean>
+    <bean id="french" factory-bean="greetingFactory" factory-method="createGreetingService">
+        <constructor-arg value="fr"/>
+    </bean>
+    <bean id="greetingServiceGerman" factory-bean="greetingFactory" factory-method="createGreetingService">
+        <constructor-arg value="de"/>
+    </bean>
+    <beans profile="english">
+       <import resource="classpath:spring/greeting-english-config.xml"/>
+    </beans>
+    <beans profile="spanish">
+        <import resource="classpath:spring/greeting-spanish-config.xml"/>
+    </beans>
+</beans>

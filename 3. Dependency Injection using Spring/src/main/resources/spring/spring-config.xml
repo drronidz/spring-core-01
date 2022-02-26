@@ -6,33 +6,12 @@
                "http://www.springframework.org/schema/beans
                http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
     <context:component-scan base-package="com.academicdeveloper"/>
+    <import resource="greeting-config.xml"/>
 
     <bean id="greetingController" class="com.academicdeveloper.helloworld.controllers.GreetingController">
         <property name="greetingService" ref="greetingServiceDefault"/>
         <property name="greetingServiceGerman" ref="greetingServiceGerman"/>
         <property name="greetingServiceArabic" ref="arabic"/>
     </bean>
-    <bean id="greetingFactory" class="com.academicdeveloper.helloworld.services.GreetingFactory"/>
-    <bean id="arabic" factory-bean="greetingFactory" factory-method="createGreetingService">
-        <constructor-arg value="ar"/>
-    </bean>
-    <bean id="spanish" factory-bean="greetingFactory" factory-method="createGreetingService">
-        <constructor-arg value="es"/>
-    </bean>
-    <bean id="french" factory-bean="greetingFactory" factory-method="createGreetingService">
-        <constructor-arg value="fr"/>
-    </bean>
-    <bean id="greetingServiceGerman" factory-bean="greetingFactory" factory-method="createGreetingService">
-        <constructor-arg value="de"/>
-    </bean>
-    <beans profile="english">
-        <bean id="greetingServiceDefault" factory-bean="greetingFactory" factory-method="createGreetingService" primary="true">
-            <constructor-arg value="en"/>
-        </bean>
-    </beans>
-    <beans profile="spanish">
-        <bean id="greetingServiceDefault" factory-bean="greetingFactory" factory-method="createGreetingService">
-            <constructor-arg value="es"/>
-        </bean>
-    </beans>
+
 </beans>
