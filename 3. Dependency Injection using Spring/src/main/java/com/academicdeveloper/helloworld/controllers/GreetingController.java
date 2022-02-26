@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 
-@Controller
+//@Controller
 public class GreetingController {
 
     private GreetingService greetingService;
@@ -23,19 +23,19 @@ public class GreetingController {
 
     private GreetingService greetingServiceArabic;
 
-    @Autowired
+//    @Autowired
     public void setGreetingService(GreetingService greetingService) {
         this.greetingService = greetingService;
     }
 
-    @Autowired
-    @Qualifier("greetingServiceGerman")
+//    @Autowired
+//    @Qualifier("greetingServiceGerman")
     public void setGreetingServiceGerman(GreetingService greetingServiceGerman) {
         this.greetingServiceGerman = greetingServiceGerman;
     }
 
-    @Autowired
-    @Qualifier("arabic")
+//    @Autowired
+//    @Qualifier("arabic")
     public void setGreetingServiceArabic (GreetingService greetingServiceArabic) {
         this.greetingServiceArabic = greetingServiceArabic;
     }

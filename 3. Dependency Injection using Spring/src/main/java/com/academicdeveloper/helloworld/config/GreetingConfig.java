@@ -20,44 +20,44 @@ import org.springframework.context.annotation.Profile;
 @Configuration
 public class GreetingConfig {
 
-    @Bean
-    public GreetingFactory greetingFactory(){
-        return new GreetingFactory();
-    }
+//    @Bean
+//    public GreetingFactory greetingFactory(){
+//        return new GreetingFactory();
+//    }
 
-    @Bean
-    @Profile("english")
-    @Primary
-    public GreetingService greetingServiceEnglish(GreetingFactory factory) {
-        return factory.createGreetingService("en");
-    }
+//    @Bean
+//    @Profile("english")
+//    @Primary
+//    public GreetingService greetingServiceEnglish(GreetingFactory factory) {
+//        return factory.createGreetingService("en");
+//    }
 
-    @Bean
-    @Profile("spanish")
-    public GreetingService greetingServiceSpanish(GreetingFactory factory) {
-        return factory.createGreetingService("es");
-    }
+//    @Bean
+//    @Profile("spanish")
+//    public GreetingService greetingServiceSpanish(GreetingFactory factory) {
+//        return factory.createGreetingService("es");
+//    }
 
-    @Bean
-    @Profile("french")
-    public GreetingService greetingServiceFrench(GreetingFactory factory) {
-        return factory.createGreetingService("fr");
-    }
+//    @Bean
+//    @Profile("french")
+//    public GreetingService greetingServiceFrench(GreetingFactory factory) {
+//        return factory.createGreetingService("fr");
+//    }
 
-    @Bean(name = "arabic")
+//    @Bean(name = "arabic")
 //    @Profile("arabic")
-    public GreetingService greetingServiceArabic(GreetingFactory factory) {
-        return factory.createGreetingService("ar");
-    }
+//    public GreetingService greetingServiceArabic(GreetingFactory factory) {
+//        return factory.createGreetingService("ar");
+//    }
 
-    @Bean
-    @Profile("amazigh")
-    public GreetingService greetingServiceAmazigh(GreetingFactory factory) {
-        return factory.createGreetingService("az");
-    }
+//    @Bean
+//    @Profile("amazigh")
+//    public GreetingService greetingServiceAmazigh(GreetingFactory factory) {
+//        return factory.createGreetingService("az");
+//    }
 
-    @Bean
-    public GreetingService greetingServiceGerman(GreetingFactory factory) {
-        return factory.createGreetingService("de");
-    }
+//    @Bean
+//    public GreetingService greetingServiceGerman(GreetingFactory factory) {
+//        return factory.createGreetingService("de");
+//    }
 }
