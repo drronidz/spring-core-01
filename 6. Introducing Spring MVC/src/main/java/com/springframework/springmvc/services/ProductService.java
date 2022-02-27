@@ -11,10 +11,5 @@ import com.springframework.springmvc.domain.Product;
 
 import java.util.List;
 
-public interface ProductService {
-
-    List<Product> getAllProducts();
-    Product getProductById(Integer id);
-    Product saveOrUpdateProduct(Product product);
-    boolean deleteProduct(Integer id);
+public interface ProductService extends CRUDService<Product>{
 }

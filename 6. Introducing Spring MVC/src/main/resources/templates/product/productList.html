@@ -13,7 +13,7 @@
             th:src="@{/webjars/jquery/2.1.4/jquery.min.js}">
     </script>
 
-    <link href="../static/css/spring-core.css"
+    <link href="../../static/css/spring-core.css"
           th:href="@{css/spring-core.css}" rel="stylesheet" media="screen"/>
 </head>
 
@@ -32,6 +32,7 @@
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
+            <!--/*@thymesVar id="id" type="com.springframework.springmvc.domain.Product"*/-->
             <tr th:each="product : ${products}">
                 <td th:text="${product.id}">0</td>
                 <td th:text="${product.description}">product 0 desc</td>
@@ -39,7 +40,7 @@
                 <td th:text="${product.imageURL}">http://www.example.image0.com</td>
                 <td><a class="btn btn-default" th:href="${'/product/' + product.id}">View</a></td>
                 <td><a class="btn btn-primary" th:href="${'/product/edit/' + product.id}">Edit</a></td>
-                <td><a class="btn btn-danger" th:href="${'/product/delete/' + product.id}">Delete</a></td>
+                <td><a class="btn btn-danger"  th:href="${'/product/delete/' + product.id}">Delete</a></td>
             </tr>
         </table>
         <a class="btn btn-success" th:href="${'/product/new'}">New Product</a>
