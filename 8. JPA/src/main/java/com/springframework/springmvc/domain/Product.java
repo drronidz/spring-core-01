@@ -7,9 +7,19 @@ Author Name : @ DRRONIDZ
 DATE : 2/26/2022 4:47 PM
 */
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 
+@Entity
 public class Product implements DomainObject{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    // GenerationType.AUTO good for (h2 & mysql)
+    // GenerationType.SEQUENCE good for (oracle db)
     private Integer id;
     private String description;
     private BigDecimal price;
