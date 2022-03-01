@@ -7,10 +7,7 @@ Author Name : @ DRRONIDZ
 DATE : 2/26/2022 4:47 PM
 */
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
@@ -21,6 +18,10 @@ public class Product implements DomainObject{
     // GenerationType.AUTO good for (h2 & mysql)
     // GenerationType.SEQUENCE good for (oracle db)
     private Integer id;
+
+    @Version
+    private Integer version;
+
     private String description;
     private BigDecimal price;
     private String imageURL;
@@ -33,6 +34,14 @@ public class Product implements DomainObject{
     @Override
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 
     public String getDescription() {
