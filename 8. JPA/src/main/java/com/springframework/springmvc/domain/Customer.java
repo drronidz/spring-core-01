@@ -7,8 +7,17 @@ Author Name : @ DRRONIDZ
 DATE : 2/26/2022 10:52 PM
 */
 
+import javax.persistence.*;
+
+@Entity
 public class Customer implements DomainObject{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @Version
+    private Integer version;
+
     private String firstName;
     private String lastName;
     private String email;
@@ -27,6 +36,14 @@ public class Customer implements DomainObject{
     @Override
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 
     public String getFirstName() {
