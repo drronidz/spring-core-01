@@ -22,13 +22,13 @@ public class SpringMvcApplication {
 
         ApplicationContext context = SpringApplication.run(SpringMvcApplication.class, args);
 
-        System.out.println(colorize(" ################# Beans ################# ", BOLD(), textColorDark, backgroundLight));
-        System.out.println(colorize(String.valueOf(context.getBeanDefinitionCount()), BOLD(), textColorDark, backgroundColorOne));
-
-        for (String name: context.getBeanDefinitionNames()) {
-            System.out.println();
-            System.out.println(colorize(" " + name + " ", BOLD(), textColorLight, backgroundColorTwo));
-        }
+//        System.out.println(colorize(" ################# Beans ################# ", BOLD(), textColorDark, backgroundLight));
+//        System.out.println(colorize(String.valueOf(context.getBeanDefinitionCount()), BOLD(), textColorDark, backgroundColorOne));
+//
+//        for (String name: context.getBeanDefinitionNames()) {
+//            System.out.println();
+//            System.out.println(colorize(" " + name + " ", BOLD(), textColorLight, backgroundColorTwo));
+//        }
     }
 
 }
