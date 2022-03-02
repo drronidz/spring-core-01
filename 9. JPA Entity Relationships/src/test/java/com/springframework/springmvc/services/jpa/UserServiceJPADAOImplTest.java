@@ -2,8 +2,8 @@ package com.springframework.springmvc.services.jpa;
 
 import com.diogonunes.jcolor.Attribute;
 import com.springframework.springmvc.config.JPAIntegrationConfig;
-import com.springframework.springmvc.domain.Customer;
-import com.springframework.springmvc.domain.User;
+import com.springframework.springmvc.domain.*;
+import com.springframework.springmvc.services.ProductService;
 import com.springframework.springmvc.services.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.List;
 
 import static com.diogonunes.jcolor.Ansi.colorize;
 import static com.diogonunes.jcolor.Attribute.BOLD;
@@ -31,6 +33,8 @@ public class UserServiceJPADAOImplTest {
 
     private UserService userService;
 
+    private ProductService productService;
+
     Attribute backgroundColorOne = Attribute.BACK_COLOR(132, 147, 36);
     Attribute backgroundColorTwo = Attribute.BACK_COLOR(1, 41, 95);
     Attribute backgroundLight = Attribute.BACK_COLOR(255, 255, 255);
@@ -42,6 +46,11 @@ public class UserServiceJPADAOImplTest {
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @Autowired
+    public void setProductService(ProductService productService) {
+        this.productService = productService;
     }
 
     @Test
@@ -78,5 +87,80 @@ public class UserServiceJPADAOImplTest {
         assert savedUser.getVersion() != null;
         assert savedUser.getCustomer() != null;
         assert savedUser.getCustomer().getId() != null;
+    }
+
+    @Test
+    public void addCartToUserTest() throws Exception {
+        User user = new User();
+
+        user.setUsername("drronidz");
+        user.setPassword("12041994setif");
+
+        user.setCart(new Cart());
+
+        User savedUser = userService.saveOrUpdate(user);
+
+        assert savedUser.getId() != null;
+        assert savedUser.getVersion() != null;
+        assert savedUser.getCart() != null;
+        assert savedUser.getCart().getId() != null;
+    }
+
+    @Test
+    public void addCartWithCartDetailsToUserTest() throws Exception {
+        User user = new User();
+
+        user.setUsername("drronidz");
+        user.setPassword("12041994setif");
+
+        user.setCart(new Cart());
+
+        List<Product> storedProducts = (List<Product>) productService.listAll();
+
+        CartDetail cartItemOne = new CartDetail();
+        cartItemOne.setProduct(storedProducts.get(0));
+        user.getCart().addCartDetail(cartItemOne);
+
+        CartDetail cartItemTwo = new CartDetail();
+        cartItemTwo.setProduct(storedProducts.get(1));
+        user.getCart().addCartDetail(cartItemTwo);
+
+        User savedUser = userService.saveOrUpdate(user);
+
+        assert savedUser.getId() != null;
+        assert savedUser.getVersion() != null;
+        assert savedUser.getCart() != null;
+        assert savedUser.getCart().getId() != null;
+        assert savedUser.getCart().getCartDetails().size() == 2;
+    }
+
+    @Test
+    public void addAndRemoveCartToUserWithCartDetails() throws Exception {
+        User user = new User();
+
+        user.setUsername("drronidz");
+        user.setPassword("12041994setif");
+
+        user.setCart(new Cart());
+
+        List<Product> storedProducts = (List<Product>) productService.listAll();
+
+        CartDetail cartItemOne = new CartDetail();
+        cartItemOne.setProduct(storedProducts.get(0));
+        user.getCart().addCartDetail(cartItemOne);
+
+        CartDetail cartItemTwo = new CartDetail();
+        cartItemTwo.setProduct(storedProducts.get(1));
+        user.getCart().addCartDetail(cartItemTwo);
+
+        User savedUser = userService.saveOrUpdate(user);
+
+        assert savedUser.getCart().getCartDetails().size() == 2;
+
+        savedUser.getCart().removeCartDetail(savedUser.getCart().getCartDetails().get(0));
+
+        userService.saveOrUpdate(savedUser);
+
+        assert savedUser.getCart().getCartDetails().size() == 1;
     }
 }
