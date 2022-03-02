@@ -9,7 +9,5 @@ DATE : 2/26/2022 4:49 PM
 
 import com.springframework.springmvc.domain.Product;
 
-import java.util.List;
-
 public interface ProductService extends CRUDService<Product>{
 }

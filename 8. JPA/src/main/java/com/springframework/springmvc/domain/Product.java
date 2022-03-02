@@ -10,7 +10,7 @@ DATE : 2/26/2022 4:47 PM
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Entity
+@Entity(name = "Product")
 public class Product implements DomainObject{
 
     @Id

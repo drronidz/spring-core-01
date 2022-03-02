@@ -1,4 +1,4 @@
-package com.springframework.springmvc.services;
+package com.springframework.springmvc.services.map;
 
 /*
 PROJECT NAME : 6. Introducing Spring MVC
@@ -9,6 +9,8 @@ DATE : 2/26/2022 4:49 PM
 
 import com.springframework.springmvc.domain.DomainObject;
 import com.springframework.springmvc.domain.Product;
+import com.springframework.springmvc.services.AbstractMapService;
+import com.springframework.springmvc.services.ProductService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +19,7 @@ import java.util.*;
 
 @Service
 @Profile("map")
-public class ProductServiceImpl extends AbstractMapService implements ProductService{
+public class ProductServiceImpl extends AbstractMapService implements ProductService {
 
     public ProductServiceImpl() {
         loadDomainObjects();

@@ -1,4 +1,4 @@
-package com.springframework.springmvc.services;
+package com.springframework.springmvc.services.map;
 
 /*
 PROJECT NAME : 6. Introducing Spring MVC
@@ -9,6 +9,8 @@ DATE : 2/26/2022 11:06 PM
 
 import com.springframework.springmvc.domain.Customer;
 import com.springframework.springmvc.domain.DomainObject;
+import com.springframework.springmvc.services.AbstractMapService;
+import com.springframework.springmvc.services.CustomerService;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
