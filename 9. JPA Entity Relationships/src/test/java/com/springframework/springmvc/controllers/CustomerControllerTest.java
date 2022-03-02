@@ -108,11 +108,11 @@ public class CustomerControllerTest {
         returnCustomer.setId(id);
         returnCustomer.setFirstName(firstName);
         returnCustomer.setLastName(lastName);
-        returnCustomer.setAddressLineOne(addressLineOne);
-        returnCustomer.setAddressLineTwo(addressLineTwo);
-        returnCustomer.setCity(city);
-        returnCustomer.setState(state);
-        returnCustomer.setZipCode(zipCode);
+        returnCustomer.getBillingAddress().setAddressLineOne(addressLineOne);
+        returnCustomer.getBillingAddress().setAddressLineTwo(addressLineTwo);
+        returnCustomer.getBillingAddress().setCity(city);
+        returnCustomer.getBillingAddress().setState(state);
+        returnCustomer.getBillingAddress().setZipCode(zipCode);
         returnCustomer.setEmail(email);
         returnCustomer.setPhoneNumber(phoneNumber);
 
@@ -149,11 +149,11 @@ public class CustomerControllerTest {
         assertEquals(id, boundCustomer.getValue().getId());
         assertEquals(firstName, boundCustomer.getValue().getFirstName());
         assertEquals(lastName, boundCustomer.getValue().getLastName());
-        assertEquals(addressLineOne, boundCustomer.getValue().getAddressLineOne());
-        assertEquals(addressLineTwo, boundCustomer.getValue().getAddressLineTwo());
-        assertEquals(city, boundCustomer.getValue().getCity());
-        assertEquals(state, boundCustomer.getValue().getState());
-        assertEquals(zipCode, boundCustomer.getValue().getZipCode());
+        assertEquals(addressLineOne, boundCustomer.getValue().getBillingAddress().getAddressLineOne());
+        assertEquals(addressLineTwo, boundCustomer.getValue().getBillingAddress().getAddressLineTwo());
+        assertEquals(city, boundCustomer.getValue().getBillingAddress().getCity());
+        assertEquals(state, boundCustomer.getValue().getBillingAddress().getState());
+        assertEquals(zipCode, boundCustomer.getValue().getBillingAddress().getZipCode());
         assertEquals(email, boundCustomer.getValue().getEmail());
         assertEquals(phoneNumber, boundCustomer.getValue().getPhoneNumber());
     }
