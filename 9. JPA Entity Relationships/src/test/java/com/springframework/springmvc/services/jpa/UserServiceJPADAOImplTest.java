@@ -2,6 +2,7 @@ package com.springframework.springmvc.services.jpa;
 
 import com.diogonunes.jcolor.Attribute;
 import com.springframework.springmvc.config.JPAIntegrationConfig;
+import com.springframework.springmvc.domain.Customer;
 import com.springframework.springmvc.domain.User;
 import com.springframework.springmvc.services.UserService;
 import org.junit.Test;
@@ -56,5 +57,26 @@ public class UserServiceJPADAOImplTest {
 
         System.out.println(colorize("Encrypted Password", BOLD(), textColorDark, backgroundLight));
         System.out.println(colorize(savedUser.getEncryptedPassword(), BOLD(), textColorDark, backgroundColorOne));
+    }
+
+    @Test
+    public void saveOfUserWithCustomer() throws Exception {
+        User user = new User();
+
+        user.setUsername("drronidz");
+        user.setPassword("12041994setif");
+
+        Customer customer = new Customer();
+        customer.setFirstName("Chevy");
+        customer.setLastName("Chase");
+
+        user.setCustomer(customer);
+
+        User savedUser = userService.saveOrUpdate(user);
+
+        assert savedUser.getId() != null;
+        assert savedUser.getVersion() != null;
+        assert savedUser.getCustomer() != null;
+        assert savedUser.getCustomer().getId() != null;
     }
 }
