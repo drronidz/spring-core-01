@@ -12,11 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Cart implements DomainObject{
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+public class Cart extends AbstractDomainClass{
 
     @Version
     private Integer version;

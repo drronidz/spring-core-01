@@ -7,23 +7,25 @@ Author Name : @ DRRONIDZ
 DATE : 3/1/2022 11:19 PM
 */
 
-import com.springframework.springmvc.domain.Address;
-import com.springframework.springmvc.domain.Customer;
-import com.springframework.springmvc.domain.Product;
+import com.springframework.springmvc.domain.*;
 import com.springframework.springmvc.services.CustomerService;
 import com.springframework.springmvc.services.ProductService;
+import com.springframework.springmvc.services.UserService;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Component
 public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     private ProductService productService;
     private CustomerService customerService;
+    private UserService userService;
 
     @Autowired
     public void setProductService(ProductService productService) {
@@ -35,11 +37,49 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         this.customerService = customerService;
     }
 
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
         loadProducts();
-        loadCustomers();
+        loadUsersAndCustomers();
+        loadCarts();
+        loadOrderHistory();
+    }
+
+    private void loadOrderHistory() {
+        List<User> users = (List<User>) userService.listAll();
+        List<Product> products = (List<Product>) productService.listAll();
+
+        users.forEach(user -> {
+            Order order = new Order();
+            order.setCustomer(user.getCustomer());
+
+            products.forEach(product -> {
+                OrderDetail orderDetail = new OrderDetail();
+                orderDetail.setProduct(product);
+                orderDetail.setQuantity(1);
+                order.addToOrderDetails(orderDetail);
+            });
+        });
+    }
+
+    private void loadCarts() {
+        List<User> users = (List<User>) userService.listAll();
+        List<Product> products = (List<Product>) productService.listAll();
+
+        users.forEach(user -> {
+            user.setCart(new Cart());
+            CartDetail cartDetail = new CartDetail();
+            cartDetail.setProduct(products.get(0));
+            cartDetail.setQuantity(2);
+            user.getCart().addCartDetail(cartDetail);
+            userService.saveOrUpdate(user);
+        });
     }
 
     public void loadProducts() {
@@ -72,7 +112,11 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         productService.saveOrUpdate(productFour);
     }
 
-    public void loadCustomers() {
+    public void loadUsersAndCustomers() {
+        User userOne = new User();
+        userOne.setUsername("drronidz");
+        userOne.setPassword("12041994setif");
+
         Customer customerOne = new Customer();
         customerOne.setId(1);
         customerOne.setFirstName("John");
@@ -85,7 +129,13 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         customerOne.getBillingAddress().setZipCode("33101");
         customerOne.setEmail("john.doe@springframework.org");
         customerOne.setPhoneNumber("305.333.0101");
-        customerService.saveOrUpdate(customerOne);
+        userOne.setCustomer(customerOne);
+
+        userService.saveOrUpdate(userOne);
+
+        User userTwo = new User();
+        userTwo.setUsername("alcatraz");
+        userTwo.setPassword("16061971ainazel");
 
         Customer customerTwo = new Customer();
         customerTwo.setId(2);
@@ -99,7 +149,13 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         customerTwo.getBillingAddress().setZipCode("44101");
         customerTwo.setEmail("jane.doe@springframework.org");
         customerTwo.setPhoneNumber("405.333.0404");
-        customerService.saveOrUpdate(customerTwo);
+        userTwo.setCustomer(customerTwo);
+
+        userService.saveOrUpdate(userTwo);
+
+        User userThree = new User();
+        userThree.setUsername("user");
+        userThree.setPassword("01011900london");
 
         Customer customerThree = new Customer();
         customerThree.setId(3);
@@ -111,8 +167,10 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         customerThree.getBillingAddress().setCity("Illinois");
         customerThree.getBillingAddress().setState("Boston");
         customerThree.getBillingAddress().setZipCode("55101");
-        customerThree.setEmail("jane.doe@springframework.org");
+        customerThree.setEmail("michel.weston@springframework.org");
         customerThree.setPhoneNumber("905.666.0808");
-        customerService.saveOrUpdate(customerThree);
+        userThree.setCustomer(customerThree);
+
+        userService.saveOrUpdate(userThree);
     }
 }

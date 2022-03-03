@@ -13,7 +13,6 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Address {
 
-
     private String addressLineOne;
     private String addressLineTwo;
     private String city;

@@ -10,10 +10,7 @@ DATE : 2/26/2022 10:52 PM
 import javax.persistence.*;
 
 @Entity
-public class Customer implements DomainObject{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+public class Customer extends AbstractDomainClass{
 
     @Version
     private Integer version;
@@ -32,15 +29,6 @@ public class Customer implements DomainObject{
     @OneToOne
     private User user;
 
-    @Override
-    public Integer getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getVersion() {
         return version;

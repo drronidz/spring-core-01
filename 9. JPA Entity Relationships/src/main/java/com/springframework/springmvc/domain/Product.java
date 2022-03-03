@@ -11,13 +11,13 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity(name = "Product")
-public class Product implements DomainObject{
+public class Product extends AbstractDomainClass{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    // GenerationType.AUTO good for (h2 & mysql)
-    // GenerationType.SEQUENCE good for (oracle db)
-    private Integer id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    // GenerationType.AUTO good for (h2 & mysql)
+//    // GenerationType.SEQUENCE good for (oracle db)
+//    private Integer id;
 
     @Version
     private Integer version;
@@ -26,15 +26,6 @@ public class Product implements DomainObject{
     private BigDecimal price;
     private String imageURL;
 
-    @Override
-    public Integer getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getVersion() {
         return version;
